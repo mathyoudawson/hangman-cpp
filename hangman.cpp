@@ -15,16 +15,19 @@ std::string getGuess(){
   return guess; // need to validate guess is a single char
 }
 
-void compareGuess(std::string guess, std::string targetWord){
-  std::size_t found = targetWord.find(guess);
-  if(found!=std::string::npos){ // could possibly use recurrision to find multiple positions
-    std::cout << "found at: " << found;
-  }
+std::size_t findIndexOfGuess(std::string guess, std::string targetWord){
+  return targetWord.find(guess);
 }
 
 int main(){
   int lives{ 5 };
   std::string targetWord = getRandomWord();
   std::string guess = getGuess();
-  compareGuess(guess, targetWord);
+  std::size_t guessIndex = findIndexOfGuess(guess, targetWord);
+  if(guessIndex != std::string::npos){
+    std::cout << "found at: " << guessIndex; 
+  }
+  else{
+    std::cout << "bad guess" << std::endl;
+  }
 }
